@@ -136,8 +136,8 @@ def plot_patients():
 
 # @st.cache(show_spinner=True)
 def predict():
-    print('update patients . ##########')
-    print(st.session_state)
+    #print('update patients . ##########')
+    #print(st.session_state)
     input = []
     for key in input_keys:
         value = st.session_state[key]
@@ -158,7 +158,7 @@ def predict():
     st.session_state['patients'].append(
         data
     )
-    print('update patients ... ##########')
+    #print('update patients ... ##########')
 
 def plot_below_header():
     col1, col2 = st.columns([1, 9])
