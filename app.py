@@ -76,7 +76,7 @@ if 'patients' not in st.session_state:
 if 'display' not in st.session_state:
     st.session_state['display'] = 1
 if 'model' not in st.session_state:
-    st.session_state['model'] = 'DeepSurv'
+    st.session_state['model'] = 'deepsurv'
 deepsurv_model = get_model(st.session_state['model'])
 sidebar_code = get_code()
 def plot_survival():
