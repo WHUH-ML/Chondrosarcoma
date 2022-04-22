@@ -38,7 +38,7 @@ settings, input_keys = load_setting()
 
 @st.cache(show_spinner=False)
 def get_model(name='DeepSurv'):
-    model = load_model('./output/{}.zip'.format(name))
+    model = load_model('{}.zip'.format(name))
     return model
 
 
