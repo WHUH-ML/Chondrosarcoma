@@ -204,7 +204,7 @@ def plot_below_header():
     st.write('')
     st.write('')
 
-st.header('DeepSurv-based model for predicting survival of neuroendocrine', anchor='survival-of-neuroendocrine')
+st.header('DeepSurv-based model for predicting survival of patients with neuroendocrine tumor', anchor='survival-of-neuroendocrine')
 if st.session_state['patients']:
     plot_below_header()
 st.subheader("Instructions:")
