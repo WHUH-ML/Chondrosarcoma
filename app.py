@@ -11,27 +11,25 @@ def load_setting():
     settings = {
         'Age': {'values': [0, 100], 'type': 'slider', 'init_value': 50, 'add_after': ', year'},
         'Gender': {'values': ["Male", "Female"], 'type': 'selectbox', 'init_value': 0, 'add_after': ''},
-        'Race': {'values': ["White", "Black","Other"], 'type': 'selectbox', 'init_value': 0, 'add_after': ''},
-        'Marital status': {'values': ["Not married", "Married"], 'type': 'selectbox', 'init_value': 1, 'add_after': ''},
-        'Primary site': {'values': ["Head", "Body", "Tail", "Other"], 'type': 'selectbox', 'init_value': 1, 'add_after': ''},
-        # 'Histological type': {'values': ["Conventional", "Dedifferentiated"], 'type': 'selectbox', 'init_value': 0, 'add_after': ''},
+        'Primary site': {'values': ["Extremity", "Axial skeleton", "Other"], 'type': 'selectbox', 'init_value': 1, 'add_after': ''},
+        'Histological type': {'values': ["Conventional", "Dedifferentiated"], 'type': 'selectbox', 'init_value': 0, 'add_after': ''},
         # 'Stage': {'values': ["I", "II", "III", 'IV'], 'type': 'selectbox', 'init_value': 1, 'add_after': ''},
         'Grade': {
             'values': ["Well differentiated", "Moderately differentiated", "Poorly differentiated", 'Undifferentiated'],
             'type': 'selectbox', 'init_value': 0, 'add_after': ''},
-        'Surgery': {'values': ["None", "Local or partial pancreatectomy", "Total or extended pancreatectomy"],
+        'Surgery': {'values': ["None", "Local treatment", "Radical excision with limb salvage", 'Amputation'],
                     'type': 'selectbox', 'init_value': 1, 'add_after': ''},
-        'Chemotherapy': {'values': ["No", "Yes"], 'type': 'selectbox', 'init_value': 0, 'add_after': ''},
+        # 'Radiotherapy': {'values': ["No", "Yes"], 'type': 'selectbox', 'init_value': 0, 'add_after': ''},
         # 'Chemotherapy': {'values': ["No", "Yes"], 'type': 'selectbox', 'init_value': 0, 'add_after': ''},
         'Tumor size': {'values': [0, 1000], 'type': 'slider', 'init_value': 135, 'add_after': ', mm'},
-        'Tumor extension': {'values': ["Localized", "No vascular invasion", "Further extension"],
+        'Tumor extension': {'values': ["No break in periosteum", "Extension beyond periosteum", "Further extension"],
                             'type': 'selectbox', 'init_value': 1, 'add_after': ''},
-        # 'Distant metastasis': {'values': ["None", "Yes"], 'type': 'selectbox',
-        #                        'init_value': 0,
-        #                        'add_after': ''}
+        'Distant metastasis': {'values': ["None", "Yes"], 'type': 'selectbox',
+                               'init_value': 0,
+                               'add_after': ''}
     }
-    input_keys = ['Age', 'Chemotherapy', 'Gender', 'Grade', 'Marital status',
-       'Primary site', 'Race', 'Surgery', 'Tumor extension', 'Tumor size']
+    input_keys = ['Age', 'Distant metastasis', 'Gender', 'Grade', 'Histological type',
+       'Primary site', 'Surgery', 'Tumor extension', 'Tumor size']
     return settings, input_keys
 
 
@@ -39,8 +37,8 @@ settings, input_keys = load_setting()
 
 
 @st.cache(show_spinner=False)
-def get_model(name='deepsurv'):
-    model = load_model('./{}.zip'.format(name))
+def get_model(name='DeepSurv'):
+    model = load_model('./output/{}.zip'.format(name))
     return model
 
 
@@ -78,7 +76,7 @@ if 'patients' not in st.session_state:
 if 'display' not in st.session_state:
     st.session_state['display'] = 1
 if 'model' not in st.session_state:
-    st.session_state['model'] = 'deepsurv'
+    st.session_state['model'] = 'DeepSurv'
 deepsurv_model = get_model(st.session_state['model'])
 sidebar_code = get_code()
 def plot_survival():
@@ -136,8 +134,8 @@ def plot_patients():
 
 # @st.cache(show_spinner=True)
 def predict():
-    #print('update patients . ##########')
-    #print(st.session_state)
+    print('update patients . ##########')
+    print(st.session_state)
     input = []
     for key in input_keys:
         value = st.session_state[key]
@@ -158,7 +156,7 @@ def predict():
     st.session_state['patients'].append(
         data
     )
-    #print('update patients ... ##########')
+    print('update patients ... ##########')
 
 def plot_below_header():
     col1, col2 = st.columns([1, 9])
@@ -204,7 +202,7 @@ def plot_below_header():
     st.write('')
     st.write('')
 
-st.header('DeepSurv-based model for predicting survival of patients with neuroendocrine tumor', anchor='survival-of-neuroendocrine')
+st.header('DeepSurv-based model for predicting survival of chondrosarcoma', anchor='survival-of-chondrosarcoma')
 if st.session_state['patients']:
     plot_below_header()
 st.subheader("Instructions:")
