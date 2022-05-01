@@ -92,30 +92,3 @@ tabMat %>% rownames()%>% lapply(function(x){gsub('\\.',' ',x)}) %>% as.character
   set_header_labels('.'='','level'='Level','p'='P-value') %>%
   autofit()%>%
   save_as_docx(path=paste('Tables','baseline_overall.docx',sep = '/'))
-
-
-library(caret)
-#### split train and test data
-set.seed(12)
-base_data <- data %>% .[setdiff(names(.),exclude_cols)]
-indxTrain <- createDataPartition(base_data[,1], p=0.7, list=F)
-train_data <- base_data[indxTrain,]
-test_data <- base_data[-indxTrain,]
-
-#### baseline table of train and test data ####
-train_data$type = 'Train'
-test_data$type = 'Test'
-base_data = rbind(train_data,test_data)
-out_col = 'type'
-dput(names(base_data))
-my_vars <- base_data %>% colnames %>% setdiff(c(out_col,'type'))
-cat_vars <- my_vars %>% sapply(function(x){is.character(levels(base_data[[x]]))}) %>% .[which(.)] %>% names
-my_tab <- CreateTableOne(vars = my_vars, strata = out_col, data = base_data, factorVars = cat_vars,addOverall = T)
-tabMat <- print(my_tab, quote = FALSE, noSpaces = TRUE, printToggle = T,showAllLevels = TRUE)
-tabMat %>% rownames()%>% lapply(function(x){gsub('\\.',' ',x)}) %>% as.character() %>% cbind(tabMat) %>% as.data.frame() %>% subset(select=-c(test))%>%
-  flextable() %>%
-  bold(j = '.', bold = TRUE, part = "body")%>%
-  bold(j = 'p',i= ~p < 0.05,bold = TRUE, part = "body")%>%
-  set_header_labels('.'='','level'='Level','p'='P-value') %>%
-  autofit()%>%
-  save_as_docx(path=paste('Tables','baseline_group_by_type.docx',sep = '/'))
