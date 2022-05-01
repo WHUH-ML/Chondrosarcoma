@@ -13,4 +13,4 @@ pip install -r requirement.txt
 ```
 Then run [ModelDevelopmentWithoutTuningOutput.ipynb](ModelDevelopmentWithoutTuningOutput.ipynb) in Jupyter Notebook.
 
-Run ```streamlit run app.py``` in terminal to open the web application locally
+Run ```streamlit run app.py``` in terminal to open the web application locally.
