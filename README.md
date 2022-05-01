@@ -11,7 +11,7 @@ The original data read in R code is not provided in this repository and needs to
 The [data](/data/data_surv.csv) after data preprocessing is provided. To reproduce this study, first run the following codes to install packages:
 ```
 git clone https://github.com/WHUH-ML/Chondrosarcoma.git
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 Then run [ModelDevelopmentWithoutTuningOutput.ipynb](ModelDevelopmentWithoutTuningOutput.ipynb) in Jupyter Notebook.
 
