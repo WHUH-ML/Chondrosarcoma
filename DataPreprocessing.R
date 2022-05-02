@@ -15,16 +15,8 @@ get_data <- function(){
     filter(grepl('9220|9243',`ICD-O-3 Hist/behav`)) %>%
     filter(grepl('C40|C41',`Primary Site - labeled`)) %>%
     filter(`First malignant primary indicator`== 'Yes') %>%
-    # filter(`RX Summ--Surg Prim Site (1998+)` %in% c( 0, 15, 19, 25, 26, 30, 40, 41, 42, 50, 51, 52, 53, 54)) %>%
     filter(`Survival months` != 0 & `Survival months` != 'Unknown') %>%
-    # filter(`CS mets at dx (2004-2015)` %in% c(0,30,35,40,50)) %>%
-    # filter(`Grade (thru 2017)` != 'Unknown') %>%
-    # mutate(`CS tumor size (2004-2015)` = as.numeric(`CS tumor size (2004-2015)`)) %>%
-    # filter(`CS tumor size (2004-2015)` %in% c(1:988)) %>%
-    # filter(!grepl('999',`CS extension (2004-2015)`)) %>%
-    # filter(!grepl('Blank|NA|UNK',`Derived AJCC Stage Group, 6th ed (2004-2015)`)) %>%
     mutate(`Age recode with single ages and 100+`= gsub('years|\\+','',`Age recode with single ages and 100+`))%>%
-    # mutate(`Age recode with single ages and 100+`= gsub('\\+','',`Age recode with single ages and 100+`))%>%
     subset(select = c(
       `Year of diagnosis`,
       `Age recode with single ages and 100+`,
