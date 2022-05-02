@@ -190,7 +190,7 @@ data_imputed <- missForest(
     data[c('Status','Survival.months')]
   )
 
-#### Feature Selecting -- Correction plot ------------------------------------
+#### Feature Selecting -- Correlation plot ------------------------------------
 library(corrplot)
 corr_data <- data_imputed
 corr_data <- as.data.frame(lapply(corr_data,as.numeric),check.names = F)
