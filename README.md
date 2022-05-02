@@ -2,7 +2,7 @@
 
 Data preprocessing is handled by R code: [DataPreprocessing.R](DataPreprocessing.R)
 
-Model construction, hyperparameters tuning and evaluation: [ModelDevelopmentWithoutTuningOutput.ipynb](ModelDevelopmentWithoutTuningOutput.ipynb)
+Model construction, hyperparameters tuning and evaluation is handled mainly by [Pysurvival](https://github.com/square/pysurvival) package: [ModelDevelopmentWithoutTuningOutput.ipynb](ModelDevelopmentWithoutTuningOutput.ipynb)
 
 Web application based on [streamlit](https://github.com/streamlit/streamlit) package: [app.py](app.py)
 
@@ -16,3 +16,7 @@ pip install -r requirements.txt
 Then run [ModelDevelopmentWithoutTuningOutput.ipynb](ModelDevelopmentWithoutTuningOutput.ipynb) in Jupyter Notebook.
 
 Run ```streamlit run app.py``` in terminal to open the web application locally.
+
+[Online web application](https://share.streamlit.io/whuh-ml/chondrosarcoma/Predict/app.py)
+
+[Paper link](https://pubmed.ncbi.nlm.nih.gov/)(To be updated)
