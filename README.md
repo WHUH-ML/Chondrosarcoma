@@ -8,7 +8,7 @@ Web application based on [streamlit](https://github.com/streamlit/streamlit) pac
 
 The original data read in R code is not provided in this repository and needs to be extracted in the [SEER](https://seer.cancer.gov/) database according to inclusion criteria (AYA site recode 2020 Revision = 4.2 Chondrosarcoma)
 
-The [data](/data/data_surv.csv) after data preprocessing is provided. To reproduce this study, first run the following codes to install packages:
+To reproduce this study, first run the following codes to install packages:
 ```
 git clone https://github.com/WHUH-ML/Chondrosarcoma.git
 pip install -r requirements.txt
@@ -19,4 +19,4 @@ Run ```streamlit run app.py``` in terminal to open the web application locally.
 
 [Online web application](https://share.streamlit.io/whuh-ml/chondrosarcoma/Predict/app.py)
 
-[Paper link](https://pubmed.ncbi.nlm.nih.gov/)(To be updated)
+[Paper link](https://doi.org/10.3389/fonc.2022.967758)
